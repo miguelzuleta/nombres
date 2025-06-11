@@ -13,14 +13,16 @@
     body {
       background-color: #000;
       display: flex;
-      padding: 25px;
+      width: 100vw;
+			height: 100dvh;
       justify-content: center;
+			align-items: center;
     }
 
-    #epp {
+    #nombres {
       background-color: #fff;
       padding: 12px 25px;
-      width: 600px;
+      width: 300px;
       box-sizing: border-box;
       border-radius: 10px;
       letter-spacing: 0.015em;
@@ -86,7 +88,7 @@
   </style>
 </head>
 <body>
-  <section id="epp"></section>
+  <section id="nombres"></section>
   <script src="https://miguelzuleta.com/append/index.js"></script>
   <script>
     let members = [
@@ -96,8 +98,7 @@
       'Santiago',
       'Paulina'
     ];
-
-
+    
     let shuffleTable = () => {
       let listElems = '';
       let shuffle = members.map(el => [Math.random(), el]).sort().map(el => el[1]);
@@ -109,18 +110,9 @@
       return listElems;
     }
 
-    let renderTable = () => {
-      append(appended.list, shuffleTable(), 'update');
-    }
+    append('#nombres', '<div class="list" bb-label="list"></div>');
 
-    append('#epp', `
-      <div class="list" bb-label="list"></div>
-      <button bb-label="cta">Rebarajar</button>
-    `);
-
-    appended.cta.addEventListener('click', renderTable);
-
-    renderTable();
+    append(appended.list, shuffleTable(), 'update');
   </script>
 </body>
 </html>
