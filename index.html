@@ -14,9 +14,9 @@
       background-color: #000;
       display: flex;
       width: 100vw;
-			height: 100dvh;
+      height: 100dvh;
       justify-content: center;
-			align-items: center;
+      align-items: center;
     }
 
     #nombres {
@@ -88,7 +88,7 @@
   </style>
 </head>
 <body>
-  <section id="nombres"></section>
+  <section id="wrap"></section>
   <script src="https://miguelzuleta.com/append/index.js"></script>
   <script>
     let members = [
@@ -98,21 +98,27 @@
       'Santiago',
       'Paulina'
     ];
-    
+	  
     let shuffleTable = () => {
       let listElems = '';
       let shuffle = members.map(el => [Math.random(), el]).sort().map(el => el[1]);
 
       shuffle.forEach(el => {
-        listElems += `<div class="row">${el}</div>`;
+        listElems += `<p class="row">${el}</p>`;
       });
 
       return listElems;
     }
 
-    append('#nombres', '<div class="list" bb-label="list"></div>');
+    append('#wrap', `
+       <div id="nombres" bb-label="nombres">
+         <button bb-label="cta">Mostrar Nombres</button>
+       </div>
+    `);
 
-    append(appended.list, shuffleTable(), 'update');
+    appended.cta.addEventListener('click', () => {
+       append(appended.nombres, `<div class="list">${shuffleTable()}</div>`, 'update');
+    })
   </script>
 </body>
 </html>
